@@ -104,10 +104,12 @@ Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot lo
 
 
 EXPLICACION
+
 ¿Por qué cambiar el puerto no exige recompilar?
+
 Porque el puerto no vive en el código, vive en la configuración. Spring Boot lee server.port al arrancar desde application.properties,
 una variable de entorno, o un argumento como --server.port=8081 y arma el servidor con ese valor.
-El .class compilado nunca tiene un número de puerto escrito adentro; solo tiene la lógica de "levanta el servidor con lo que te digan en ese momento".
+El .class compilado nunca tiene un número de puerto escrito adentro.
 Por eso el mismo archivo compilado puede correr en 8080 o en 8081 sin tocar javac para nada.
 
 Y por la misma razón, los tests no se inmutan: @SpringBootTest arma su propio contexto por separado
